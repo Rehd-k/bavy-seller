@@ -1,0 +1,57 @@
+  <div class="container-fluid">
+    <div class="grid">
+      <div class="row">
+        <div class="col-1 no-spacing ">
+          <div class="position-fixed">
+            <div class="side-bar">
+              <div class="logo">
+                <img class="logo-img">
+              </div>
+
+              <div class="nav-items">
+
+                <div routerLink="Dashboard">
+                  <i class="fas fa-home" title="Dashboard"></i>
+                </div>
+
+
+                <div routerLink="products">
+                  <i class="fab fa-product-hunt" title="Products"></i>
+                </div>
+
+
+                <div routerLink="orders">
+                  <i class="fas fa-dolly" title="Orders"></i>
+                </div>
+
+                <div>
+                  <i class="fas fa-tasks" title="TODO"></i>
+                </div>
+
+                <div routerLink="stories">
+                  <i class="fas fa-rss" title="Stories"></i>
+                </div>
+
+                <div routerLink="statictics">
+                  <i class="fas fa-chart-line" title="Statictics"></i>
+                </div>
+
+
+
+                <mat-divider class="spacer"></mat-divider>
+
+                <div class="log-out">
+                  <i class="fas fa-sign-out-alt"></i>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+        <div class="col-11">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>

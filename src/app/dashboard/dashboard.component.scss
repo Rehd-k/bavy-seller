@@ -1,0 +1,58 @@
+.main-container {
+  color: #e4e5e8
+}
+
+.cards-conatiner {
+  margin-top: 3.5em;
+}
+
+.calender {
+  float: left;
+  margin-top: 1em;
+}
+
+.acount-container {
+  border-radius: 30px 0 0 30px;
+  background: #181c3a;
+  height: 39.5rem;
+  margin-right: -1em
+}
+
+.user-info {
+  padding: 2.5em;
+  padding-top: 4rem
+}
+
+.stats-pay-card {
+  background: #181c3a;
+  border-radius: 20px;
+}
+
+.stats-pay {
+  padding-left: 30px;
+  padding-right: 30px;
+
+  .progress-bar {
+    margin-top: .5rem;
+  }
+}
+
+.task-expansion {
+  background: #181c3a;
+}
+
+.divider {
+  width: 5rem;
+  height: .01em;
+  background: #82828f;
+  margin: 2.5em auto;
+}
+.urgency {
+  height: 10px;
+  width: 10px;
+  background: red;
+  border: 1px solid #82828f;
+  margin: auto;
+}
+
+

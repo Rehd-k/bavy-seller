@@ -1,0 +1,37 @@
+<form [formGroup]="stroies">
+  <div class="row media_type_block">
+
+    <div class="col-12 col-md-6">
+      <textarea formControlName="newsText" id="" cols="30" rows="10" class="caption  w-100" placeholder="Your Story"></textarea>
+      <div class="row">
+        <div class="col-4">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Product Images</mat-label>
+            <ngx-mat-file-input #removableInput placeholder="Basic outline placeholder" multiple
+              [accept]="['.png','.jpg']" name="media" (change)="onFileChange($event)"></ngx-mat-file-input>
+            <button mat-icon-button matSuffix *ngIf="!removableInput.empty" (click)="removableInput.clear($event)">
+              <mat-icon>clear</mat-icon>
+            </button>
+            <mat-icon matSuffix *ngIf="removableInput.empty">add_a_photo</mat-icon>
+          </mat-form-field>
+        </div>
+
+        <div class="col-4">
+          <button class="related_btn bg-rehd w-100" mat-raised-button (click)="getRelatedProducts()">Related Products</button>
+        </div>
+      </div>
+
+
+
+      <button class="upload w-100" mat-raised-button color="primary" (click)="upload()">Upload</button>
+    </div>
+    <div class="col-md-6 d-none d-md-block">
+      <div class="row">
+        images thingy
+      </div>
+      <div class="row">
+        Adver thingy
+      </div>
+    </div>
+  </div>
+</form>

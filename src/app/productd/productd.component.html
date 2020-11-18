@@ -1,0 +1,187 @@
+<div class="row">
+  <div class="col-7 mt-3">
+    <mat-card class="form-background">
+
+      <form [formGroup]="uploadProducts" method="post" enctype="multipart/form-data">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-select formControlName="category">
+            <mat-option value="Fashion">Fashion</mat-option>
+            <mat-option value="Beaulty">Beaulty</mat-option>
+            <mat-option value="Materials">Materials</mat-option>
+          </mat-select>
+          <mat-label>
+            Category
+          </mat-label>
+          <mat-error *ngIf="productFormData.category.errors?.required && productFormData.category.touched">
+            A Category required.
+          </mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-select (selectionChange)="getTitle()" formControlName="for">
+            <mat-option value="men">Men</mat-option>
+            <mat-option value="women">Women</mat-option>
+            <mat-option value="hairCare">Hair care</mat-option>
+            <mat-option value="fragrance">Fragrance</mat-option>
+            <mat-option value="skinCare">Skin care</mat-option>
+          </mat-select>
+          <mat-label>
+            For
+          </mat-label>
+          <mat-error *ngIf="productFormData.for.errors?.required && productFormData.for.touched">
+            This field is required.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-select formControlName="title">
+            <mat-option *ngFor="let title of titles" [value]="title">{{title}}</mat-option>
+          </mat-select>
+          <mat-label>
+            <mat-icon>favorite</mat-icon> Title
+          </mat-label>
+          <mat-error *ngIf="productFormData.title.errors?.required && productFormData.title.touched">
+            This feild is required.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Subtitle</mat-label>
+          <input matInput placeholder="Long sleeves T-shirt..." formControlName="subtitle">
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+          <mat-error *ngIf="productFormData.subtitle.errors?.required && productFormData.subtitle.touched">
+            This field is required.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Description</mat-label>
+          <input matInput placeholder="This is a very nice T-shirt..." formControlName="Description">
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+          <mat-error *ngIf="productFormData.Description.errors?.required && productFormData.Description.touched">
+            Please add a description.
+          </mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Features</mat-label>
+          <input matInput placeholder="Stripes;light;" formControlName="Features">
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Specification</mat-label>
+          <input matInput placeholder="Stripes;light;Long sleves" formControlName="Specification">
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Discount Price(optional)</mat-label>
+          <input matInput type="number" formControlName="DiscountPrice">
+          <span matPrefix>&#8358;</span>
+          <span matSuffix>.00</span>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Price</mat-label>
+          <input matInput type="number" formControlName="price">
+          <span matPrefix>&#8358;</span>
+          <span matSuffix>.00</span>
+
+          <mat-error *ngIf="productFormData.price.errors?.required && productFormData.price.touched">
+            A Price required.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Size</mat-label>
+          <input matInput placeholder="S;M;L;XL;XXL" formControlName="size">
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Color</mat-label>
+          <input matInput placeholder="red;green;blue" formControlName="color">
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Weight</mat-label>
+          <input matInput placeholder="30kg" formControlName="weight">
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Lenght</mat-label>
+          <input matInput placeholder="10yards" formControlName="Lenght">
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Main material</mat-label>
+          <input matInput placeholder="Leather" formControlName="mainMaterial">
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Stock Level</mat-label>
+          <input matInput placeholder="34" type="number" formControlName="stockLevel">
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+
+        </mat-form-field>
+
+
+
+
+
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Product Images</mat-label>
+          <ngx-mat-file-input #removableInput placeholder="Basic outline placeholder" multiple
+            [accept]="['.png','.jpg']" name="images" (change)="onFileChange($event)"></ngx-mat-file-input>
+          <button mat-icon-button matSuffix *ngIf="!removableInput.empty" (click)="removableInput.clear($event)">
+            <mat-icon>clear</mat-icon>
+          </button>
+          <mat-icon matSuffix *ngIf="removableInput.empty">add_a_photo</mat-icon>
+
+
+          <mat-error *ngIf="productFormData.images.errors?.maxLength && productFormData.images.touched">
+            Images are required.
+          </mat-error>
+
+          <mat-error *ngIf="productFormData.images.errors?.required && productFormData.images.touched">
+            Images are required.
+          </mat-error>
+
+          <mat-error *ngIf="productFormData.images.errors?.maxContentSize">
+            The total size must not exceed {{productFormData.images.errors?.maxContentSize.maxSize | byteFormat}} ({{productFormData.images.errors?.maxContentSize.actualSize
+            | byteFormat}}).
+          </mat-error>
+        </mat-form-field>
+
+
+
+
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Tags</mat-label>
+          <input matInput placeholder="red;green;blue;shirt" formControlName="tags">
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+
+
+          <mat-error *ngIf="productFormData.tags.errors?.required && productFormData.tags.touched">
+            Please add tags.
+          </mat-error>
+        </mat-form-field>
+
+        <button mat-stroked-button class="w-50" (click)="submit()" type="submit">Add To Store</button>
+        <input type="submit" mat-stroked-button >
+      </form>
+
+
+    </mat-card>
+  </div>
+  <div class="col-3"></div>
+</div>

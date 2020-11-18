@@ -1,0 +1,42 @@
+.prod-holder {
+  margin-top: 3em;
+}
+
+.for {
+  padding: 6px;
+  border-radius: 5px;
+  color: #ffffff;
+  cursor: pointer;
+  text-align: center;
+}
+
+.for .comment { display: none; }
+.for:hover .replies { display: none; }
+.for:hover .comment { display: inline; }
+
+
+
+.prod-card {
+  color: white;
+}
+
+.subtitle {
+  font-weight: 10px;
+}
+
+.prod-img {
+  border-radius: 5px;
+}
+
+.fr {
+  float: right;
+}
+
+.fl {
+  float: left
+}
+
+
+.sidebar {
+  border-left: 1px solid #ffffff;
+}
