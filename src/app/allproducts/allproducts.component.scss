@@ -1,8 +1,15 @@
-.prod-holder {
-  margin-top: 3em;
-}
 
-.for {
+.for,
+.cat,
+.price,
+.dc_price,
+.weight,
+.length,
+.mainMaterial,
+.stock_level,
+.created_on,
+.features,
+.specification {
   padding: 6px;
   border-radius: 5px;
   color: #ffffff;
@@ -10,10 +17,67 @@
   text-align: center;
 }
 
-.for .comment { display: none; }
-.for:hover .replies { display: none; }
-.for:hover .comment { display: inline; }
+.price .back,
+.cat .back,
+.for .back,
+.dc_price .back,
+.weight .back,
+.length .back,
+.mainMaterial .back,
+.stock_level .back,
+.created_on .back,
+.size .back,
+.color .back,
+.tags .back,
+.features .back,
+.specification .back  {
+  display: none;
+}
 
+
+.price:hover .front,
+.cat:hover .front,
+.for:hover .front,
+.dc_price:hover .front,
+.weight:hover .front,
+.length:hover .front,
+.mainMaterial:hover .front,
+.stock_level:hover  .front,
+.created_on:hover .front,
+.size:hover .front,
+.color:hover .front,
+.tags:hover .front,
+.features:hover .front,
+.specification:hover .front {
+  display: none;
+}
+
+
+.price:hover .back,
+.cat:hover .back,
+.for:hover .back,
+.dc_price:hover .back,
+.weight:hover .back,
+.length:hover .back,
+.mainMaterial:hover .back,
+.stock_level:hover  .back,
+.created_on:hover .back,
+.size:hover .back,
+.color:hover .back,
+.tags:hover .back,
+.features:hover .back,
+.specification:hover .back
+ {
+  display: inline;
+}
+
+.size, .color, .tags {
+  padding: 10px;
+  border-radius: 5px;
+  color: #ffffff;
+  cursor: pointer;
+  text-align: center;
+}
 
 
 .prod-card {
@@ -39,4 +103,13 @@
 
 .sidebar {
   border-left: 1px solid #ffffff;
+  overflow-y: scroll;
+  height: 550px;
+  padding: 1.5em;
+}
+.checking_class {
+  width: 1px;
+  height: 1px;
+  background-color: red;
+  
 }

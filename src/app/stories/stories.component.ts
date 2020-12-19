@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ProductsService } from '../core/shared/services/products.service';
 import { StoriesService } from '../core/shared/services/stories.service';
-import { toFormData } from '../core/shared/uploadfile';
 
 @Component({
   selector: 'app-stories',
@@ -12,29 +12,29 @@ export class StoriesComponent implements OnInit {
 
 
   stroies: FormGroup;
+  disableImages = false;
+  disableVideos = false;
+  Files: FileList;
+  imagesReview = [];
+  videosReview = []
+  products = [];
 
-  products: object[];
+  related = [];
 
-  related = [
-    {
-      productName: 'house',
-      productId: 'uldo'
-    },
-    {
-      productName: 'house2',
-      productId: 'uldo2'
-    }
-  ];
+  uploadResponse = { status: '', message: '', filePath: '' };
 
-  constructor(private formBuilder: FormBuilder, private storiesService: StoriesService) { }
+  constructor(private formBuilder: FormBuilder, private storiesService: StoriesService, private prodService: ProductsService) { }
 
   getFormInfo() {
     this.stroies = this.formBuilder.group({
       related: [this.related],
-      media: [null],
+      images: [null],
+      video: [null],
       newsText: ['']
     });
   }
+
+
 
   get productFormData() {
     const controls = 'controls';
@@ -42,32 +42,66 @@ export class StoriesComponent implements OnInit {
   }
 
   getRelatedProducts() {
-
-
+    this.prodService.getProducts().subscribe(res => console.log(res))
   }
 
-  onFileChange(event: { target: { files: string | any[]; }; }) {
-    if (event.target.files.length > 0) {
-      const file = event.target.files;
-      this.stroies.get('media').setValue(file);
-      const houe = [];
-      console.log(typeof(houe));
-      console.log(file);
+  clearVideo() {
+    this.videosReview = [];
+    this.disableImages = false;
+  }
+
+  clearImages() {
+    this.imagesReview = [];
+    this.disableVideos = false;
+  }
+
+  selectImages(event) {
+    this.imagesReview = [];
+    this.videosReview = [];
+    if (event.target.files && event.target.files[0]) {
+      this.Files = event.target.files;
+      for (let i = 0; i < this.Files.length; i++) {
+        this.storiesService.formData.append('images', this.Files[i])
+        const reader = new FileReader();
+        // tslint:disable-next-line: no-shadowed-variable
+        reader.onload = (event: any) => {
+          this.imagesReview.push(event.target.result);
+        };
+        reader.readAsDataURL(event.target.files[i]);
+      }
+      this.disableVideos = true;
     }
+  }
+
+  selectVideos(event) {
+    this.videosReview = [];
+    this.imagesReview = [];
+    if (event.target.files && event.target.files[0]) {
+      this.Files = event.target.files;
+      for (let i = 0; i < this.Files.length; i++) {
+        this.storiesService.formData.append('Video', this.Files[i])
+        const reader = new FileReader();
+        // tslint:disable-next-line: no-shadowed-variable
+        reader.onload = (event: any) => {
+          this.videosReview.push(event.target.result);
+        };
+        reader.readAsDataURL(event.target.files[i]);
+      }
+      this.disableImages = true;
+    }
+  }
+
+
+  addRealatedProducts(productId) {
+    this.related.push({
+      productId
+    });
 
   }
-  // addRealatedProducts(productName, productId) {
-  //   this.related.push({
-  //   productName,
-  //   productId
-  //   });
-
-  // }
 
 
   upload() {
-    console.log(this.stroies.value);
-    this.storiesService.uploadStories(toFormData(this.stroies.value)).subscribe();
+    this.storiesService.uploadStories(this.storiesService.toFormData(this.stroies.value)).subscribe();
   }
 
 
@@ -77,4 +111,7 @@ export class StoriesComponent implements OnInit {
 
   }
 
+
+
+ 
 }

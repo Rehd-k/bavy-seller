@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AllStoriesComponent } from './all-stories/all-stories.component';
 import { AllproductsComponent } from './allproducts/allproducts.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { EditProductsComponent } from './edit-products/edit-products.component';
 import { MenuComponent } from './menu/menu.component';
 import { OrdersComponent } from './orders/orders.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -50,6 +51,10 @@ const routes: Routes = [
           {
             path: 'all',
             component: AllproductsComponent
+          },
+          {
+            path: 'edit/:prodcutId',
+            component: EditProductsComponent
           }
         ]
       },

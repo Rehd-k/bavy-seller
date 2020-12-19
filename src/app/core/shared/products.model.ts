@@ -15,7 +15,7 @@ export interface Products {
     Lenght: string;
     mainMaterial: string;
     stockLevel: string;
-    images: string[];
+    images: object[];
     tags: string[];
     reviews: object[];
     createdOn: string;

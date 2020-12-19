@@ -1,33 +1,68 @@
 <form [formGroup]="stroies">
-  <div class="row media_type_block">
-
+  <div class="row mt-5 ml-2 ml-md-0">
     <div class="col-12 col-md-6">
-      <textarea formControlName="newsText" id="" cols="30" rows="10" class="caption  w-100" placeholder="Your Story"></textarea>
+      <textarea formControlName="newsText" id="" cols="30" rows="10" class="caption  w-100"
+        placeholder="Your Story"></textarea>
       <div class="row">
         <div class="col-4">
           <mat-form-field appearance="outline" class="w-100">
-            <mat-label>Product Images</mat-label>
-            <ngx-mat-file-input #removableInput placeholder="Basic outline placeholder" multiple
-              [accept]="['.png','.jpg']" name="media" (change)="onFileChange($event)"></ngx-mat-file-input>
-            <button mat-icon-button matSuffix *ngIf="!removableInput.empty" (click)="removableInput.clear($event)">
+            <mat-label class="d-none d-md-block">Add Images</mat-label>
+            <ngx-mat-file-input #removeImages placeholder="Basic outline placeholder" multiple
+              [disabled]="disableImages" [accept]="['.png','.jpg']" name="images" (change)="selectImages($event)">
+            </ngx-mat-file-input>
+            <button mat-icon-button matSuffix *ngIf="!removeImages.empty" (click)="removeImages.clear($event)"
+              (click)="clearImages()">
               <mat-icon>clear</mat-icon>
             </button>
-            <mat-icon matSuffix *ngIf="removableInput.empty">add_a_photo</mat-icon>
+            <mat-icon matSuffix *ngIf="removeImages.empty">add_a_photo</mat-icon>
           </mat-form-field>
         </div>
 
         <div class="col-4">
-          <button class="related_btn bg-rehd w-100" mat-raised-button (click)="getRelatedProducts()">Related Products</button>
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label class="d-none d-md-block">Add Video</mat-label>
+            <ngx-mat-file-input #removeVideos placeholder="Basic outline placeholder" [disabled]="disableVideos"
+              [accept]="['.mp4','.mpeg']" name="video" (change)="selectVideos($event)">
+            </ngx-mat-file-input>
+            <button mat-icon-button matSuffix *ngIf="!removeVideos.empty" (click)="removeVideos.clear($event)"
+              (click)="clearVideo()">
+              <mat-icon>clear</mat-icon>
+            </button>
+            <mat-icon matSuffix *ngIf="removeVideos.empty">add_a_video</mat-icon>
+          </mat-form-field>
+        </div>
+
+        <div class="col-4">
+          <button class="related_btn bg-rehd w-100" mat-raised-button (click)="getRelatedProducts()">Related
+            Products</button>
         </div>
       </div>
 
-
+      <div class="row d-md-none">
+        <div class="col-6" *ngIf="">
+          <img [src]="" height="300" class="w-100" />
+        </div>
+      </div>
 
       <button class="upload w-100" mat-raised-button color="primary" (click)="upload()">Upload</button>
     </div>
     <div class="col-md-6 d-none d-md-block">
       <div class="row">
-        images thingy
+        <div *ngIf="imagesReview" class="col-12 col-md-5 mt-5 mt-md-0">
+          <div class="row mt-5">
+            <div class="col-6 mt-5" *ngFor='let url of imagesReview'>
+              <img [src]="url" height="150" width="200px" style="margin: 3px;"> <br />
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="videosReview" class="col-12 col-md-5 mt-5 mt-md-0">
+          <div class="row mt-5">
+            <div class="col-6 mt-5" *ngFor='let url of videosReview'>
+              <video src="url"></video> <br />
+            </div>
+          </div>
+        </div>
       </div>
       <div class="row">
         Adver thingy

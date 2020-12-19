@@ -23,6 +23,7 @@ import { AllproductsComponent } from './allproducts/allproducts.component';
 import { StoryHolderComponent } from './story-holder/story-holder.component';
 import { AllStoriesComponent } from './all-stories/all-stories.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { EditProductsComponent } from './edit-products/edit-products.component';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -43,7 +44,8 @@ export function tokenGetter() {
     ProdHolderComponent,
     AllproductsComponent,
     StoryHolderComponent,
-    AllStoriesComponent
+    AllStoriesComponent,
+    EditProductsComponent
   ],
   imports: [
     BrowserModule,

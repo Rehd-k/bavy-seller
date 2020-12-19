@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FileValidator } from 'ngx-material-file-input';
 import { ProductsService } from '../core/shared/services/products.service';
-import { toFormData } from '../core/shared/uploadfile';
+
 
 @Component({
   selector: 'app-productd',
@@ -10,6 +10,11 @@ import { toFormData } from '../core/shared/uploadfile';
   styleUrls: ['./productd.component.scss']
 })
 export class ProductdComponent implements OnInit {
+
+
+  imagesReview = [];
+  Files: FileList;
+
 
   titles;
   selectedFor = false;
@@ -19,6 +24,8 @@ export class ProductdComponent implements OnInit {
 
 
   constructor(private prodService: ProductsService, private formBuilder: FormBuilder) { }
+
+
   getTitle() {
     const titlesObj = this.prodService.GetTitle(this.uploadProducts.value.for);
     this.titles = Object.values(titlesObj)[0];
@@ -26,20 +33,26 @@ export class ProductdComponent implements OnInit {
     console.log(this.titles);
   }
 
-  onFileChange(event: { target: { files: string | any[]; }; }) {
-    if (event.target.files.length > 0) {
-      const files = event.target.files;
-      const imgToUpload = [];
-      for (const file of files) {
-        imgToUpload.push(file);
-      }
-      console.log(imgToUpload);
-      this.uploadProducts.get('images').setValue(imgToUpload);
-      console.log(files);
-    }
-
+  clearImages() {
+    this.imagesReview = [];
   }
 
+  //  MAIN ONE
+  selectFiles(event) {
+    this.imagesReview = [];
+    if (event.target.files && event.target.files[0]) {
+      this.Files = event.target.files;
+      for (let i = 0; i < this.Files.length; i++) {
+        this.prodService.formData.append('images', this.Files[i])
+        const reader = new FileReader();
+        // tslint:disable-next-line: no-shadowed-variable
+        reader.onload = (event: any) => {
+          this.imagesReview.push(event.target.result);
+        };
+        reader.readAsDataURL(event.target.files[i]);
+      }
+    }
+  }
 
 
   getFormInfo() {
@@ -60,7 +73,7 @@ export class ProductdComponent implements OnInit {
       mainMaterial: [''],
       stockLevel: [''],
       // Remeber to do the photo valdaton when nex ur dataed
-      images: [undefined],
+      picture: [undefined],
       tags: ['', [Validators.required]]
 
     });
@@ -71,15 +84,18 @@ export class ProductdComponent implements OnInit {
     return this.uploadProducts[controls];
   }
 
-  submit() {
-    this.prodService.UploadProduct(toFormData(this.uploadProducts.value)).subscribe(res => console.log(res));
 
-    const uploadedFiles = toFormData(this.uploadProducts.value).getAll('images');
-    console.log(uploadedFiles);
-    for (const file of uploadedFiles) {
-        console.log(file);
-      }
+  submit() {
+    this.imagesReview = [];
+    this.prodService.UploadProduct(this.prodService.toFormData(this.uploadProducts.value)).subscribe(res => {
+      console.log(res);
+      this.prodService.clearForm();
+    }
+      );
+    
+
   }
+
   ngOnInit(): void {
     this.getFormInfo();
   }

@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Products } from '../core/shared/products.model';
@@ -21,7 +22,9 @@ const prodds = [
     Lenght: 'string',
     mainMaterial: 'string',
     stockLevel: 'string',
-    images: ['string'],
+    images: [{
+      url: 'string'
+    }],
     tags: ['string'],
     reviews: [{
       string: 'string'
@@ -38,7 +41,10 @@ const prodds = [
 })
 export class AllproductsComponent implements OnInit {
 
+
   products: Products[] = prodds;
+
+
 
   selectedProduct: Products;
 
@@ -46,7 +52,19 @@ export class AllproductsComponent implements OnInit {
 
   productsInfo: FormGroup;
 
-  constructor(private prodService: ProductsService, private formBuilder: FormBuilder) { }
+  imgCol: number;
+
+  sizeCol: number;
+
+  tagCol: number;
+
+  colorCol = 'checking_class';
+
+
+
+
+
+  constructor(private prodService: ProductsService, private formBuilder: FormBuilder, private http: HttpClient) { }
 
   prodForm() {
     this.productsInfo = this.formBuilder.group({
@@ -91,6 +109,50 @@ export class AllproductsComponent implements OnInit {
     this.selectedProduct = this.products.find(res =>
       res._id === selectedId
     );
+    this.colCount();
+  }
+
+
+
+  colCount() {
+    const imglength = this.selectedProduct.images.length;
+    const sizes = this.selectedProduct.size.length;
+    const colors = this.selectedProduct.color.length;
+    const tags = this.selectedProduct.tags.length;
+
+
+    // imgCol
+    if (imglength >= 4) {
+      this.imgCol = 4;
+    } else {
+      this.imgCol = 12 / imglength;
+    }
+
+
+    // sizeCol
+    if (sizes >= 4) {
+      this.sizeCol = 4;
+    } else {
+      this.sizeCol = 12 / sizes;
+    }
+
+    // tagCol
+    if (tags >= 4) {
+      this.tagCol = 4;
+    } else {
+      this.tagCol = 12 / tags;
+    }
+
+
+    // colorCol
+    if (colors >= 4) {
+      this.colorCol = 'col-4';
+    } else {
+      const col = 12 / colors;
+      this.colorCol = `col-${col}`;
+    }
+
+
   }
 
   ngOnInit(): void {

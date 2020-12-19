@@ -1,9 +1,10 @@
-<div class="row">
-    <div class="col-6"><button class="upload_new w-100 bg-rehd" mat-raised-button  routerLink="tell">Upload new</button></div>
-    <div class="col-6">
-      <button class="all_stories w-100 bg-rehd" mat-raised-button routerLink="all">All stories</button>
-    </div>
+<div class="row ml-2 mt-3">
+  <div class="col-6"><button class="upload_new w-100 bg-rehd" mat-raised-button routerLink="tell">Upload new</button>
   </div>
-  <div>
-      <router-outlet></router-outlet>
+  <div class="col-6">
+    <button class="all_stories w-100 bg-rehd" mat-raised-button routerLink="all">All stories</button>
   </div>
+</div>
+<div>
+  <router-outlet></router-outlet>
+</div>

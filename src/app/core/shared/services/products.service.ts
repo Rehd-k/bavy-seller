@@ -38,11 +38,14 @@ export class ProductsService {
       for: 'hairCare'
     }
   ];
+  formData = new FormData();
+  Files;
 
   private extractData(res: Products) {
     const body = res;
     return body;
   }
+
 
   /*
     Upload Products
@@ -67,6 +70,25 @@ export class ProductsService {
       }
     })
     );
+  }
+
+
+
+  clearForm() {
+    this.formData = new FormData();
+  }
+
+  /**
+   * Get items from formData
+   */
+
+  toFormData<T>(formValue: T) {
+
+    for (const key of Object.keys(formValue)) {
+      const value = formValue[key];
+      this.formData.append(key, value);
+    }
+    return this.formData;
   }
 
   /*
@@ -95,7 +117,7 @@ export class ProductsService {
 
   getProducts() {
     return this.Http.get(`${this.apiBaseUrl}products`).pipe(
-        map(this.extractData));
+      map(this.extractData));
   }
 
   /**

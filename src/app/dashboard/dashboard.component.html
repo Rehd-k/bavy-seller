@@ -1,145 +1,141 @@
-<div class="gird main-container">
+<div class="grid main-container">
   <div class="row">
-    <div class="col-9 no-spacing cards-conatiner">
-      <div class="row">
-        <div class="col searchbar">
-          <form class="form-inline md-form form-sm">
-            <mdb-icon fas icon="search" aria-hidden="true"></mdb-icon>
-            <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search"
-              mdbInput>
-          </form>
-        </div>
-        <div class="col calender">
-          <mat-form-field appearance="fill">
-            <mat-label>Choose a date</mat-label>
-            <input matInput [matDatepicker]="picker" disabled [min]="minDate">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker disabled="false"></mat-datepicker>
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-8">
-          <div class="row">
-            <div class="col-7">
-              <mat-card class="stats-pay-card">
-                <div class="stats-pay">
-                  <div class="row TB" title="Total balance">
-                    <s>N</s>
-                    4000
-                  </div>
-                  <div class="row TTTNP">
-                    Monthly Balance
-                  </div>
-                  <div class="row progress-bar">
-                    <mat-progress-bar mode="determinate" value="20" color="primary"></mat-progress-bar>
-                  </div>
-                </div>
-              </mat-card>
-            </div>
-            <div class="col-5">
-              <mat-card class="stats-pay-card">
-                <div class="stats-pay">
-                  <!-- Minthly Increase -->
-                  <div class="row TB" title="Total balance">
-                    <s>N</s>
-                    4000
-                  </div>
-                  <div class="row TTTNP">
-                    Monthly Balance
-                  </div>
-                  <div class="row progress-bar">
-                    <mat-progress-bar mode="determinate" value="20" color="accent"></mat-progress-bar>
-                  </div>
-                </div>
-              </mat-card>
-            </div>
+    <div class="col-12 col-md-9">
+      <div class="mt-5 ml-4 ml-md-0">
+        <div class="row">
+          <div class="col-12 col-md-6">
+            <form class="form-inline md-form form-sm">
+              <mdb-icon fas icon="search" aria-hidden="true"></mdb-icon>
+              <input class="form-control" type="text" placeholder="Search" aria-label="Search" mdbInput>
+            </form>
           </div>
-          <div class="row">
-            <div class="col-7">Stats(income)
-              <mat-card class="stats-pay-card">
-                <mat-card-header>Sales statictics</mat-card-header>
-                <div style="display: block">
-                  <canvas mdbChart [chartType]="lineChat" [datasets]="chartDatasets" [labels]="chartLabels"
-                    [colors]="chartColors" [options]="chartOptions" (chartHover)="chartHovered($event)"
-                    (chartClick)="chartClicked($event)">
-                  </canvas>
-                </div>
-              </mat-card>
-            </div>
-            <div class="col-5">
-              Stats(income)
-              <!-- Most selling products -->
-              <mat-card class="stats-pay-card">
-                <mat-card-header>
-                  Categories
-                </mat-card-header>
-                <canvas mdbChart width="1" height="1" [chartType]="pieChat" [datasets]="chartDatasets"
-                  [labels]="piechartLabels" [colors]="piechartColors" [options]="chartOptions"
-                  (chartHover)="piechartHovered($event)" (chartClick)="piechartClicked($event)">
-                </canvas>
 
-              </mat-card>
+          <div class="col-12 col-md-6">
+            <div class="calender w-100">
+              <mat-form-field appearance="fill">
+                <mat-label>Choose a date</mat-label>
+                <input matInput [matDatepicker]="picker" disabled [min]="minDate">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker disabled="false"></mat-datepicker>
+              </mat-form-field>
             </div>
           </div>
-          <div class="row">
-            <div class="col">
-              Stats(income)
-              <mat-card class="stats-pay-card">
-                <div style="display: block">
-                  <canvas mdbChart [chartType]="lineChat" [datasets]="chartDatasets" [labels]="chartLabels"
-                    [colors]="chartColors" [options]="chartOptions" (chartHover)="chartHovered($event)"
-                    (chartClick)="chartClicked($event)">
+
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-8">
+            <div class="row">
+              <div class="col-12 col-md-6 mt-5">
+                <mat-card class="stats-pay-card">
+                  <div class="stats-pay">
+                    <div class="row TB" title="Total balance">
+                      <s>N</s>
+                      4000
+                    </div>
+                    <div class="row TTTNP">
+                      Monthly Balance
+                    </div>
+                    <div class="row progress-bar">
+                      <mat-progress-bar mode="determinate" value="20" color="primary"></mat-progress-bar>
+                    </div>
+                  </div>
+                </mat-card>
+              </div>
+              <div class="col-12 col-md-6 mt-5">
+                <mat-card class="stats-pay-card">
+                  <div class="stats-pay">
+                    <!-- Minthly Increase -->
+                    <div class="row TB" title="Total balance">
+                      <s>N</s>
+                      4000
+                    </div>
+                    <div class="row TTTNP">
+                      Monthly Balance
+                    </div>
+                    <div class="row progress-bar">
+                      <mat-progress-bar mode="determinate" value="20" color="accent"></mat-progress-bar>
+                    </div>
+                  </div>
+                </mat-card>
+              </div>
+
+              <div class="col-12 col-md-6 mt-5">
+                <mat-card class="stats-pay-card">
+                  <mat-card-header>Sales statictics</mat-card-header>
+                  <div style="display: block">
+                    <canvas mdbChart [chartType]="lineChat" [datasets]="chartDatasets" [labels]="chartLabels"
+                      [colors]="chartColors" [options]="chartOptions" (chartHover)="chartHovered($event)"
+                      (chartClick)="chartClicked($event)">
+                    </canvas>
+                  </div>
+                </mat-card>
+              </div>
+              <div class="col-12 col-md-6 mt-5">
+
+                <!-- Most selling products -->
+                <mat-card class="stats-pay-card">
+                  <mat-card-header>
+                    Categories
+                  </mat-card-header>
+                  <canvas mdbChart width="1" height="1" [chartType]="pieChat" [datasets]="chartDatasets"
+                    [labels]="piechartLabels" [colors]="piechartColors" [options]="chartOptions"
+                    (chartHover)="piechartHovered($event)" (chartClick)="piechartClicked($event)">
                   </canvas>
-                </div>
-              </mat-card>
+                </mat-card>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="row">
+              <div class="col-12 mt-5">
+                <mat-card class="stats-pay-card w-100">
+                  <mat-card-header>
+                    Tasks
+                  </mat-card-header>
+                  <mat-card-content>
+                    <div class="row">
+                      <div class="col-10">this</div>
+                      <div class="col-2">
+                        <div class="urgency">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="row">
+                      <div class="col-10">this</div>
+                      <div class="col-2">
+                        <div class="urgency">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="row">
+                      <div class="col-10">this</div>
+                      <div class="col-2">
+                        <div class="urgency">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="row">
+                      <div class="col-10">this</div>
+                      <div class="col-2">
+                        <div class="urgency">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="divider"></div>
+                  </mat-card-content>
+                </mat-card>
+              </div>
             </div>
           </div>
         </div>
-        <div class="col-4">
-          <div class="row">
-            <mat-card class="stats-pay-card w-100">
-              <mat-card-header>
-                Tasks
-              </mat-card-header>
-              <mat-card-content>
-                <div class="row">
-                  <div class="col-10">this</div>
-                  <div class="col-2">
-                    <div class="urgency">
-                    </div>
-                  </div>
-                </div>
-                <div class="divider"></div>
-                <div class="row">
-                  <div class="col-10">this</div>
-                  <div class="col-2">
-                    <div class="urgency">
-                    </div>
-                  </div>
-                </div>
-                <div class="divider"></div>
-                <div class="row">
-                  <div class="col-10">this</div>
-                  <div class="col-2">
-                    <div class="urgency">
-                    </div>
-                  </div>
-                </div>
-                <div class="divider"></div>
-                <div class="row">
-                  <div class="col-10">this</div>
-                  <div class="col-2">
-                    <div class="urgency">
-                    </div>
-                  </div>
-                </div>
-                <div class="divider"></div>
-              </mat-card-content>
-            </mat-card>
+        <div class="row mt-5">
+          <div class="col-12 col-md-8">
+
           </div>
-          Stats(income)
-          <div class="row">
+          <div class="col-12 col-md-4">
             <mat-card class="stats-pay-card w-100">
               <mat-card-header>
                 Todo
@@ -179,9 +175,8 @@
         </div>
       </div>
     </div>
-
-    <div class="col-3">
-      <div class="position-fixed">
+    <div class="col-md-3 d-none d-md-block">
+      <div class="position-fixed w-100">
         <div class=" acount-container">
           <div class="user-info">
             <div class="row">
@@ -203,5 +198,19 @@
     </div>
   </div>
 </div>
+
+
+
+
+<div class="gird main-container">
+  <div class="row">
+    <div class="col-3">
+      <div class="mr-n5 position-fixed">
+        
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Most Uploaed products  -->
 <!-- Todo -->
