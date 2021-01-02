@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { catchError, shareReplay, tap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { catchError, map, shareReplay, tap } from 'rxjs/operators';
+import { BehaviorSubject, from, Observable} from 'rxjs';
 import { Router } from '@angular/router';
 
 const helper = new JwtHelperService();
@@ -20,8 +20,31 @@ export class UserauthService {
 
   private apiBaseUrl = environment.url;
   token = 'token';
+  userInfo: any;
+  user: Observable<any>;
+  userData = new BehaviorSubject(null);
+  readyStuff: Observable<any>;
 
-  constructor(private Http: HttpClient, private router: Router) {}
+  constructor(private Http: HttpClient, private router: Router) {
+    this.storedToken();
+  }
+
+  storedToken() {
+    if (jwt) {
+      if (!isExpired) {
+        this.userInfo = decodedToken;
+        this.userData.next(decodedToken);
+        return true;
+      } else {
+        localStorage.removeItem(TOKEN_KEY);
+        return null;
+      }
+    } else {
+      return null;
+    }
+
+
+  }
 
   register(credentials: any): Observable<any> {
     return this.Http
@@ -43,7 +66,17 @@ export class UserauthService {
 
   login(credentials: any) {
     return this.Http
-      .post(`${this.apiBaseUrl}seller/login`, credentials);
+      .post(`${this.apiBaseUrl}seller/login`, credentials).pipe(
+        tap((res) => {
+          this.router.navigateByUrl('/marchant/Dashboard');
+          localStorage.setItem(TOKEN_KEY, res[this.token]);
+        }),
+        shareReplay(),
+        catchError((e) => {
+          console.log(e.error);
+          throw new Error(e);
+        })
+      );
 
   }
 
