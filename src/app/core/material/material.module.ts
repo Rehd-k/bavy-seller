@@ -24,6 +24,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [],
@@ -58,7 +59,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatSlideToggleModule,
     MatInputModule,
     MatProgressBarModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatDialogModule
   ]
 })
 export class MaterialModule { }

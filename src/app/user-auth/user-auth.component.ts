@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup,  Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { controllers } from 'chart.js';
 import { UserauthService } from '../core/shared/services/userauth.service';
 
 
@@ -13,27 +14,47 @@ export class UserAuthComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private auth: UserauthService) { }
 
   regForm: FormGroup;
+  loginForm: FormGroup;
 
-  getLogin() {
+  registration = true;
+  logining = false;
 
+  showRegForm() {
+    this.registration = true;
+    this.logining = false;
   }
 
-  getRegister() {
-    this.regForm = this.formBuilder.group ({
+  showLoginForm() {
+    this.registration = false;
+    this.logining = true;
+  }
+
+
+  getLogin() {
+    this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required]],
-      companyName: ['', [Validators.required, Validators.minLength(1)]],
-      companyNumber: ['', [Validators.required]],
       password: ['', [Validators.required]]
     });
 
   }
 
-  logIn() {
+  getRegister() {
+    this.regForm = this.formBuilder.group({
+      email: ['', [Validators.required]],
+      companyName: ['', [Validators.required, Validators.minLength(1)]],
+      companyNumber: ['', [Validators.required]],
+      password: ['', [Validators.required, Validators.minLength(6)]]
+    });
 
   }
 
+  logIn() {
+    this.auth.login(this.loginForm.value).subscribe();
+  }
+
   get loginValues() {
-    return null;
+    const controls = 'controls';
+    return this.loginForm[controls];
   }
 
   get regValues() {
@@ -42,12 +63,14 @@ export class UserAuthComponent implements OnInit {
   }
 
   register() {
-    console.log(this.regForm.value);
     this.auth.register(this.regForm.value).subscribe();
   }
 
   ngOnInit(): void {
-      this.getRegister();
+    this.showLoginForm();
+    this.getRegister();
+    this.getLogin();
   }
+
 
 }

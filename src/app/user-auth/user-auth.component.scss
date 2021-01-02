@@ -1,7 +1,80 @@
-.regForm {
-    margin:  auto;
-    margin-top: 7rem ;
+* {
+  color: wheat !important;
 }
-.submit-btn {
-    margin: auto;
+
+.swtich-btns {
+  height: 3em;
+  align-content: center;
+  color: white;
+  cursor: pointer;
+}
+
+@media screen and (min-width : 767px) {
+  .move-reg-img {
+    animation: enter-to-right 1s 1 forwards;
+  }
+
+  .move-reg-form {
+    animation: enter-to-left 1s 1 forwards;
+  }
+  .move-login-img {
+    animation: enter-to-right 1s 1 forwards;
+  }
+
+  .move-login-form {
+    animation: enter-to-left 1s 1 forwards;
+  }
+}
+
+//Exit animations  
+@keyframes exit-to-left {
+  0% {
+    right: 0%;
+  }
+
+  100% {
+    right: 20%;
+    opacity: 0;
+    display: none;
+  }
+}
+
+@keyframes exit-to-right {
+  0% {
+    left: 0;
+
+  }
+
+  100% {
+    left: 20%;
+    opacity: 0;
+    display: none;
+  }
+}
+
+
+// Enterace animation
+@keyframes enter-to-left {
+  0% {
+    right: 20%;
+    opacity: 0;
+  }
+
+  100% {
+    right: 0%;
+    opacity: 1;
+  }
+
+}
+
+@keyframes enter-to-right {
+  0% {
+    left: 20%;
+    opacity: 0;
+  }
+
+  100% {
+    left: 0%;
+    opacity: 1;
+  }
 }

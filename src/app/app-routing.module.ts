@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AllStoriesComponent } from './all-stories/all-stories.component';
 import { AllproductsComponent } from './allproducts/allproducts.component';
+import { AuthGuardService } from './core/shared/services/auth-guard.service';
+import { UserPageGuardService } from './core/shared/services/user-page-guard.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EditProductsComponent } from './edit-products/edit-products.component';
 import { MenuComponent } from './menu/menu.component';
@@ -35,14 +37,17 @@ const routes: Routes = [
   {
     path: 'marchant',
     component: MenuComponent,
+    canActivate: [AuthGuardService],
     children: [
       {
         path: 'Dashboard',
-        component: DashboardComponent
+        component: DashboardComponent,
+
       },
       {
         path: 'products',
         component: ProdHolderComponent,
+
         children: [
           {
             path: 'add',
@@ -60,7 +65,7 @@ const routes: Routes = [
       },
       {
         path: 'orders',
-        component: OrdersComponent
+        component: OrdersComponent,
       },
       {
         path: 'stories',
@@ -78,7 +83,8 @@ const routes: Routes = [
       },
       {
         path: 'statictics',
-        component: StatsComponent
+        component: StatsComponent,
+
       }
     ]
   },
@@ -87,8 +93,9 @@ const routes: Routes = [
     component: WecomePageComponent
   },
   {
-    path: 'user-auth',
-    component: UserAuthComponent
+    path: 'user',
+    component: UserAuthComponent,
+    canActivate: [UserPageGuardService]
   },
   {
     path: '**',

@@ -1,10 +1,24 @@
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-6"></div>
-    <div class="col-6">
-      <form class="regForm w-100" [formGroup]="regForm">
+    <div class="row swtich-btns bg-rehd">
+        <div class="col-6" (click)="showRegForm()">
+            create Store
+        </div>
+        <mat-divider></mat-divider>
+        <div class="col-6" (click)="showLoginForm()">
+            Login
+        </div>
+    </div>
+
+    <div class="row" *ngIf="logining">
+      <div class="col-md-7 col-12 no-spacing move-login-img">
+        <img src="../../assets/pexels-karolina-grabowska-4202325.jpg" class="w-100 ">
+      </div>
+       <!-- Logining  -->
+
+    <div class="col-md-5 col-12 move-login-form">
+      <form class="regForm w-100" [formGroup]="loginForm">
         <p>
-          <mat-form-field appearance="outline" class="w-50">
+          <mat-form-field appearance="outline" class="w-md-50 w-100">
             <mat-label>Email</mat-label>
             <input matInput placeholder="example@emample.com" type="email" formControlName="email">
             <mat-icon matSuffix>alternate_email</mat-icon>
@@ -15,9 +29,51 @@
           </mat-form-field>
 
         </p>
-    
+
         <p>
-          <mat-form-field appearance="outline" class="w-50">
+          <mat-form-field appearance="outline" class="w-md-50 w-100">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" formControlName="password">
+            <mat-icon matSuffix>enhanced_encryption</mat-icon>
+
+            <mat-error *ngIf="regValues.companyNumber.errors?.required && regValues.companyNumber.touched">
+              Please provide a password
+            </mat-error>
+          </mat-form-field>
+        </p>
+
+        <button mat-stroked-button (click)="register()" [disabled]="regValues.Valid" class="w-50 submit-btn"
+          color="primary">Create Store</button>
+      </form>
+    </div>
+
+    </div>
+    <!-- registration -->
+  <div class="row" *ngIf="registration" >
+
+    <div class="col-md-7 col-12 no-spacing  move-reg-img">
+      <img src="../../assets/pexels-daria-shevtsova-1619488.jpg" class="w-100 ">
+    </div>
+
+  
+
+    <div class="col-md-5 col-12 move-reg-form">
+      <form class="regForm w-100" [formGroup]="regForm">
+        <p>
+          <mat-form-field appearance="outline" class="w-md-50 w-100">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="example@emample.com" type="email" formControlName="email">
+            <mat-icon matSuffix>alternate_email</mat-icon>
+
+            <mat-error *ngIf="regValues.email.errors?.required && regValues.email.touched">
+              An email is required
+            </mat-error>
+          </mat-form-field>
+
+        </p>
+
+        <p>
+          <mat-form-field appearance="outline" class="w-md-50 w-100">
             <mat-label>Business Name</mat-label>
             <input matInput placeholder="name to be displayed" formControlName="companyName">
             <mat-icon matSuffix>location_city</mat-icon>
@@ -28,7 +84,7 @@
           </mat-form-field>
         </p>
         <p>
-          <mat-form-field appearance="outline" class="w-50">
+          <mat-form-field appearance="outline" class="w-md-50 w-100">
             <mat-label>Business Number</mat-label>
             <input matInput placeholder="Number u can be reached by" type="number" formControlName="companyNumber">
             <mat-icon matSuffix>call</mat-icon>
@@ -38,25 +94,24 @@
             </mat-error>
           </mat-form-field>
         </p>
-    
-    
+
+
         <p>
-          <mat-form-field appearance="outline" class="w-50">
+          <mat-form-field appearance="outline" class="w-md-50 w-100">
             <mat-label>Password</mat-label>
             <input matInput type="password" formControlName="password">
             <mat-icon matSuffix>enhanced_encryption</mat-icon>
 
             <mat-error *ngIf="regValues.companyNumber.errors?.required && regValues.companyNumber.touched">
-             Please provide a password
+              Please provide a password
             </mat-error>
           </mat-form-field>
         </p>
 
-        <button mat-stroked-button (click)="register()" [disabled]="regValues.Valid" class="w-50 submit-btn" color="primary">Create Store</button>
-    
+        <button mat-stroked-button (click)="register()" [disabled]="regValues.Valid" class="w-50 submit-btn"
+          color="primary">Create Store</button>
+
       </form>
     </div>
   </div>
 </div>
-
- 
