@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { controllers } from 'chart.js';
 import { UserauthService } from '../core/shared/services/userauth.service';
 
 

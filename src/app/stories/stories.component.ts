@@ -16,8 +16,9 @@ export class StoriesComponent implements OnInit {
   disableVideos = false;
   Files: FileList;
   imagesReview = [];
-  videosReview = []
+  videosReview = [];
   products = [];
+  abouveVideoLength = true;
 
   related = [];
 
@@ -42,7 +43,7 @@ export class StoriesComponent implements OnInit {
   }
 
   getRelatedProducts() {
-    this.prodService.getProducts().subscribe(res => console.log(res))
+    this.prodService.getProducts().subscribe(res => console.log(res));
   }
 
   clearVideo() {
@@ -61,11 +62,12 @@ export class StoriesComponent implements OnInit {
     if (event.target.files && event.target.files[0]) {
       this.Files = event.target.files;
       for (let i = 0; i < this.Files.length; i++) {
-        this.storiesService.formData.append('images', this.Files[i])
+        this.storiesService.formData.append('images', this.Files[i]);
         const reader = new FileReader();
         // tslint:disable-next-line: no-shadowed-variable
         reader.onload = (event: any) => {
           this.imagesReview.push(event.target.result);
+          console.log(event.target.result);
         };
         reader.readAsDataURL(event.target.files[i]);
       }
@@ -79,11 +81,12 @@ export class StoriesComponent implements OnInit {
     if (event.target.files && event.target.files[0]) {
       this.Files = event.target.files;
       for (let i = 0; i < this.Files.length; i++) {
-        this.storiesService.formData.append('Video', this.Files[i])
+        this.storiesService.formData.append('Video', this.Files[i]);
         const reader = new FileReader();
         // tslint:disable-next-line: no-shadowed-variable
         reader.onload = (event: any) => {
           this.videosReview.push(event.target.result);
+          console.log(event.target.result);
         };
         reader.readAsDataURL(event.target.files[i]);
       }
@@ -105,6 +108,14 @@ export class StoriesComponent implements OnInit {
   }
 
 
+  onMetadata(e, video) {
+    console.log(video);
+    if (video.duration > 60) {
+      this.abouveVideoLength = true;
+      this.videosReview = [];
+    }
+  }
+
 
   ngOnInit(): void {
     this.getFormInfo();
@@ -113,5 +124,5 @@ export class StoriesComponent implements OnInit {
 
 
 
- 
+
 }

@@ -22,7 +22,6 @@ import { ProdHolderComponent } from './prod-holder/prod-holder.component';
 import { AllproductsComponent } from './allproducts/allproducts.component';
 import { StoryHolderComponent } from './story-holder/story-holder.component';
 import { AllStoriesComponent } from './all-stories/all-stories.component';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { EditProductsComponent } from './edit-products/edit-products.component';
 import { NotLogedInPopupComponent } from './not-loged-in-popup/not-loged-in-popup.component';
 

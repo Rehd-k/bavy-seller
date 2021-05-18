@@ -4,6 +4,8 @@
       <textarea formControlName="newsText" id="" cols="30" rows="10" class="caption  w-100"
         placeholder="Your Story"></textarea>
       <div class="row">
+
+
         <div class="col-4">
           <mat-form-field appearance="outline" class="w-100">
             <mat-label class="d-none d-md-block">Add Images</mat-label>
@@ -21,14 +23,15 @@
         <div class="col-4">
           <mat-form-field appearance="outline" class="w-100">
             <mat-label class="d-none d-md-block">Add Video</mat-label>
-            <ngx-mat-file-input #removeVideos placeholder="Basic outline placeholder" [disabled]="disableVideos"
-              [accept]="['.mp4','.mpeg']" name="video" (change)="selectVideos($event)">
-            </ngx-mat-file-input>
-            <button mat-icon-button matSuffix *ngIf="!removeVideos.empty" (click)="removeVideos.clear($event)"
+            <input matInput type="file" #selectVideos placeholder="Basic outline placeholder" [disabled]="disableVideos"
+              [accept]="['.mp4','.mpeg']" formControlName="video" (change)="selectVideos($event)">
+            <!-- <ngx-mat-file-input>
+            </ngx-mat-file-input> -->
+            <button mat-icon-button matSuffix *ngIf="!selectVideos.empty" (click)="selectVideos.clear($event)"
               (click)="clearVideo()">
               <mat-icon>clear</mat-icon>
             </button>
-            <mat-icon matSuffix *ngIf="removeVideos.empty">add_a_video</mat-icon>
+            <mat-icon matSuffix *ngIf="selectVideos.empty">add_a_video</mat-icon>
           </mat-form-field>
         </div>
 
@@ -37,29 +40,34 @@
             Products</button>
         </div>
       </div>
-
-      <div class="row d-md-none">
-        <div class="col-6" *ngIf="">
-          <img [src]="" height="300" class="w-100" />
-        </div>
-      </div>
-
+      <button (click)="selectVideos.click()"> open Image</button>
       <button class="upload w-100" mat-raised-button color="primary" (click)="upload()">Upload</button>
     </div>
+
+
+
+
+
+
+
     <div class="col-md-6 d-none d-md-block">
-      <div class="row">
-        <div *ngIf="imagesReview" class="col-12 col-md-5 mt-5 mt-md-0">
-          <div class="row mt-5">
-            <div class="col-6 mt-5" *ngFor='let url of imagesReview'>
-              <img [src]="url" height="150" width="200px" style="margin: 3px;"> <br />
+      <div class="mediaHolder">
+        <div></div>
+        <div *ngIf="disableVideos" class="col-12">
+          <div class="row">
+            <div class="col-6 mt-3" *ngFor='let url of imagesReview'>
+              <img [src]="url" height="150" width="200px" class="imgHolder">
             </div>
           </div>
         </div>
 
-        <div *ngIf="videosReview" class="col-12 col-md-5 mt-5 mt-md-0">
-          <div class="row mt-5">
-            <div class="col-6 mt-5" *ngFor='let url of videosReview'>
-              <video src="../../assets/VID_20181124_081838.mp4"></video> <br />
+        <div *ngIf="disableImages" class="col-12">
+          <div class="row">
+            <div class="col-6" *ngFor='let url of videosReview'>
+              <video width="280" controls #video (loadedmetadata)="onMetadata($event, video)">
+                <source [src]="url" type="video/mp4">
+                Your browser does not support the video tags
+              </video>
             </div>
           </div>
         </div>

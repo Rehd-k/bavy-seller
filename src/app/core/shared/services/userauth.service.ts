@@ -81,6 +81,7 @@ export class UserauthService {
   }
 
   logout() {
-
+    localStorage.removeItem(TOKEN_KEY);
+    this.router.navigateByUrl('welcome');
   }
 }

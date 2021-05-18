@@ -1,75 +1,81 @@
 <div class="container-fluid">
   <div class="grid">
-      <!-- sales -->
+    <!-- sales -->
     <div class="row">
-        <div class="col-md-6 col-12">
-            <mat-card class="montly-sales">
-                line graph
-            </mat-card>
-        </div>
-        <div class="col-md-6 col-12">
-            <mat-card class="for-graph">
-                bar-chart
-            </mat-card>
-        </div>
+      <div class="col-md-6 col-12">
+        <mat-card class="montly-sales">
+          <mat-card-header>Sales statictics</mat-card-header>
+            <canvas mdbChart [chartType]="lineChat" [datasets]="chartDatasets" [labels]="chartLabels"
+              [colors]="chartColors" [options]="chartOptions" (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)">
+            </canvas>
+        </mat-card>
+      </div>
+      <div class="col-md-6 col-12">
+        <mat-card class="for-graph">
+          bar-chart
+        </mat-card>
+      </div>
     </div>
     <div class="row">
-        <div class="col-md-6 col-12">
-            <mat-card class=""></mat-card>
-        </div>
+      <div class="col-md-6 col-12">
+        <mat-card class=""></mat-card>
+      </div>
 
-        <div class="col-md-6 col-12 ">
-            <mat-card class=""></mat-card>
-        </div>
+      <div class="col-md-6 col-12 ">
+        <mat-card class=""></mat-card>
+      </div>
 
 
-        <div class="col-md-6 col-12">
-            <mat-card class=""></mat-card>
-        </div>
+      <div class="col-md-6 col-12">
+        <mat-card class=""></mat-card>
+      </div>
 
-        <div class="col-md-6 col-12">
-            <mat-card class=""></mat-card>
-        </div>
+      <div class="col-md-6 col-12">
+        <mat-card class=""></mat-card>
+      </div>
 
-        <div class="col-md-6 col-12">
-            <mat-card class=""></mat-card>
-        </div>
+      <div class="col-md-6 col-12">
+        <mat-card class=""></mat-card>
+      </div>
     </div>
 
     <!-- uploads -->
     <div class="row">
-        <div class="col-md-6 col-12">
-            <mat-card class="montly-sales">
-                line graph
-            </mat-card>
-        </div>
-        <div class="col-md-6 col-12">
-            <mat-card class="for-graph">
-                bar-chart
-            </mat-card>
-        </div>
+      <div class="col-md-6 col-12">
+        <mat-card class="montly-sales">
+          line graph
+        </mat-card>
+      </div>
+      <div class="col-md-6 col-12">
+        <mat-card class="for-graph">
+          bar-chart
+        </mat-card>
+      </div>
     </div>
     <div class="row">
-        <div class="col-md-6 col-12">
-            <mat-card class=""></mat-card>
-        </div>
+      <div class="col-md-6 col-12">
+        <mat-card class=""></mat-card>
+      </div>
 
-        <div class="col-md-6 col-12 ">
-            <mat-card class=""></mat-card>
-        </div>
+      <div class="col-md-6 col-12 ">
+        <mat-card class="">
+            What the flying fuck is going on
+        </mat-card>
+      </div>
 
 
-        <div class="col-md-6 col-12">
-            <mat-card class=""></mat-card>
-        </div>
+      <div class="col-md-6 col-12">
+        <mat-card class=""></mat-card>
+      </div>
 
-        <div class="col-md-6 col-12">
-            <mat-card class=""></mat-card>
-        </div>
+      <div class="col-md-6 col-12">
+        <mat-card class=""></mat-card>
+      </div>
 
-        <div class="col-md-6 col-12">
-            <mat-card class=""></mat-card>
-        </div>
+      <div class="col-md-6 col-12">
+        <mat-card class=""></mat-card>
+      </div>
     </div>
   </div>
 </div>

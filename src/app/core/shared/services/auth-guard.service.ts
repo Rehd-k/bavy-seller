@@ -12,8 +12,6 @@ export class AuthGuardService {
   constructor(private auth: UserauthService, private router: Router, private popUp: MatDialog) { }
 
   canActivate(): boolean {
-
-
     if (this.auth.storedToken() !== true) {
       const popedup  =  this.popUp.open(NotLogedInPopupComponent);
       popedup.backdropClick().subscribe(result => {
@@ -23,9 +21,6 @@ export class AuthGuardService {
     } else {
       return true;
     }
-
-
-
   }
 
 }
